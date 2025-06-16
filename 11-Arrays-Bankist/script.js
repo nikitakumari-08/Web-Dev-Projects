@@ -1,7 +1,5 @@
 'use strict';
 
-const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
-
 const account1 = {
   owner: 'Jonas Schmedtmann',
   movements: [200, 450, -400, 3000, -650, -130, 70, 1300],
@@ -36,6 +34,7 @@ const account4 = {
 
 const accounts = [account1, account2, account3, account4];
 
+// Elements
 const labelWelcome = document.querySelector('.welcome');
 const labelDate = document.querySelector('.date');
 const labelBalance = document.querySelector('.balance__value');
@@ -61,6 +60,7 @@ const inputLoanAmount = document.querySelector('.form__input--loan-amount');
 const inputCloseUsername = document.querySelector('.form__input--user');
 const inputClosePin = document.querySelector('.form__input--pin');
 
+// Functions
 const displayMovements = function (movements, sort = false) {
   containerMovements.innerHTML = '';
 
@@ -102,7 +102,7 @@ const calcDisplaySummary = function (acc) {
     .filter(mov => mov > 0)
     .map(deposit => (deposit * acc.interestRate) / 100)
     .filter((int, i, arr) => {
-
+      // console.log(arr);
       return int >= 1;
     })
     .reduce((acc, int) => acc + int, 0);
@@ -118,21 +118,24 @@ const createUsernames = function (accs) {
       .join('');
   });
 };
-createUsUsernames(accounts);
+createUsernames(accounts);
 
 const updateUI = function (acc) {
-
+  // Display movements
   displayMovements(acc.movements);
 
+  // Display balance
   calcDisplayBalance(acc);
 
+  // Display summary
   calcDisplaySummary(acc);
 };
 
+// Event handlers
 let currentAccount;
 
 btnLogin.addEventListener('click', function (e) {
-
+  // Prevent form from submitting
   e.preventDefault();
 
   currentAccount = accounts.find(
@@ -141,17 +144,17 @@ btnLogin.addEventListener('click', function (e) {
   console.log(currentAccount);
 
   if (currentAccount?.pin === Number(inputLoginPin.value)) {
-
+    // Display UI and message
     labelWelcome.textContent = `Welcome back, ${
       currentAccount.owner.split(' ')[0]
     }`;
     containerApp.style.opacity = 1;
 
-
+    // Clear input fields
     inputLoginUsername.value = inputLoginPin.value = '';
     inputLoginPin.blur();
 
-
+    // Update UI
     updateUI(currentAccount);
   }
 });
@@ -170,11 +173,11 @@ btnTransfer.addEventListener('click', function (e) {
     currentAccount.balance >= amount &&
     receiverAcc?.username !== currentAccount.username
   ) {
-
+    // Doing the transfer
     currentAccount.movements.push(-amount);
     receiverAcc.movements.push(amount);
 
-
+    // Update UI
     updateUI(currentAccount);
   }
 });
@@ -185,9 +188,10 @@ btnLoan.addEventListener('click', function (e) {
   const amount = Number(inputLoanAmount.value);
 
   if (amount > 0 && currentAccount.movements.some(mov => mov >= amount * 0.1)) {
-
+    // Add movement
     currentAccount.movements.push(amount);
 
+    // Update UI
     updateUI(currentAccount);
   }
   inputLoanAmount.value = '';
@@ -204,10 +208,12 @@ btnClose.addEventListener('click', function (e) {
       acc => acc.username === currentAccount.username
     );
     console.log(index);
+    // .indexOf(23)
 
-
+    // Delete account
     accounts.splice(index, 1);
 
+    // Hide UI
     containerApp.style.opacity = 0;
   }
 
@@ -220,71 +226,3 @@ btnSort.addEventListener('click', function (e) {
   displayMovements(currentAccount.movements, !sorted);
   sorted = !sorted;
 });
-
-movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
-
-const dogs = [
-  { weight: 22, curFood: 250, owners: ['Alice', 'Bob'] },
-  { weight: 8, curFood: 200, owners: ['Matilda'] },
-  { weight: 13, curFood: 275, owners: ['Sarah', 'John', 'Leo'] },
-  { weight: 18, curFood: 244, owners: ['Joe'] },
-  { weight: 32, curFood: 340, owners: ['Michael'] },
-];
-
-dogs.forEach(dog => (dog.recFood = Math.floor(dog.weight ** 0.75 * 28)));
-console.log(dogs);
-
-const dogSarah = dogs.find(dog => dog.owners.includes('Sarah'));
-console.log(
-  `Sarah's dog eats too ${
-    dogSarah.curFood > dogSarah.recFood ? 'much' : 'little'
-  }`
-);
-
-const ownersTooMuch = dogs
-  .filter(dog => dog.curFood > dog.recFood)
-  .flatMap(dog => dog.owners);
-const ownersTooLittle = dogs
-  .filter(dog => dog.curFood < dog.recFood)
-  .flatMap(dog => dog.owners);
-
-console.log(ownersTooMuch);
-console.log(ownersTooLittle);
-
-   console.log(`${ownersTooMuch.join(' and ')}'s dogs are eating too much`);
-console.log(`${ownersTooLittle.join(' and ')}'s dogs are eating too little`);
-
-console.log(dogs.some(dog => dog.curFood === dog.recFood));
-
-const checkEatingOkay = dog =>
-  dog.curFood < dog.recFood * 1.1 && dog.curFood > dog.recFood * 0.9;
-
-console.log(dogs.every(checkEatingOkay));
-
-const dogsEatingOkay = dogs.filter(checkEatingOkay);
-console.log(dogsEatingOkay);
-
-const dogsGroupedByPortion = Object.groupBy(dogs, dog => {
-  if (dog.curFood > dog.recFood) {
-    return 'too-much';
-  } else if (dog.curFood < dog.recFood) {
-    return 'too-little';
-  } else {
-    return 'exact';
-  }
-});
-console.log(dogsGroupedByPortion);
-
-const dogsGroupedByOwners = Object.groupBy(
-  dogs,
-  dog => `${dog.owners.length}-owners`
-);
-console.log(dogsGroupedByOwners);
-
-const dogsSorted = dogs.toSorted((a, b) => a.recFood - b.recFood);
-console.log(dogsSorted);
- 
-
-
-
-    //****completed ****// 
