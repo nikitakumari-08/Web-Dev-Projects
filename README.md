@@ -1,6 +1,6 @@
 # 💻 Web Development Projects — By Nikita Kumari
 
-This repository contains my personal collection of web development projects built using HTML, CSS, and (soon) JavaScript. Each project reflects my learning progress, design practice, and commitment to becoming a skilled frontend developer.
+This repository contains my personal collection of web development projects built using HTML, CSS, and JavaScript. Each project reflects my learning progress, design practice, and commitment to becoming a skilled frontend developer.
 
 > I’m Nikita Kumari, a B.Tech Electronics and Communication Engineering student at UCET Hazaribagh, on a mission to build clean, responsive, and accessible websites.  
 > 🔗 GitHub: [nikita-kumari08](https://github.com/nikita-kumari08)  
