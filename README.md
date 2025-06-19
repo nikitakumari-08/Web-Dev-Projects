@@ -57,7 +57,7 @@ Here’s what I’ll be building next:
 
 - **HTML5** — Semantics and structure  
 - **CSS3** — Styling, layout, responsiveness  
-- **JavaScript (soon)** — For interactivity and DOM manipulation  
+- **JavaScript ** — For interactivity and DOM manipulation  
 - **Visual Studio Code** — Main code editor  
 - **Git & GitHub** — Version control and portfolio hosting  
 
@@ -74,7 +74,7 @@ Here’s what I’ll be building next:
 
 ## 📸 Screenshots & Demos
 
-> Coming soon! I’ll be adding screenshots and screen-recorded previews of each project for quick visual reference.
+> I’ll be adding screenshots and screen-recorded previews of each project for quick visual reference.
 
 ---
 
