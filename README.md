@@ -11,8 +11,6 @@ This repository contains my personal collection of web development projects buil
 
 This repository is dedicated to applying my frontend knowledge through practical hands-on projects. From simple UI components to full-page layouts, this is where I turn theory into tangible web experiences. Each project helps me deepen my understanding of web development and strengthen my portfolio.
 
----
-
 ## 🎯 Purpose of This Repository
 
 - Practice and master frontend design and development
